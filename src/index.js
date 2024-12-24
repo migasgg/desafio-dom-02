@@ -1,15 +1,21 @@
 const input = document.querySelector("input")
-const ulElement = document.querySelector("ul")
 const buttonElement = document.querySelector("button")
+const divElement = document.querySelector(".div")
 
 buttonElement.onclick = (e) => {
   e.preventDefault()
-  const number = input.value
+
+  const number = Number(input.value)
+
   if (number) {
+    const ulElement = document.createElement("ul")
+    divElement.appendChild(ulElement)
     for (let i = 1; i <= 10; i++) {
       const newElementLi = document.createElement("li")
-      const element = (10)[i]
-      newElementLi.innerHTML = number * i
+      newElementLi.innerHTML = `${number} x ${i} = ${number * i}`
+      if (Array.from(divElement.children).length > 1) {
+        divElement.removeChild(divElement.firstChild)
+      }
       ulElement.appendChild(newElementLi)
     }
   }
